@@ -37,9 +37,11 @@ const Wallet = (props) => {
             >
               Interested in loading your Tx history? (Ethereum mainnet)
             </Typography>{" "}
-            <Typography>Click here</Typography>
+            <Typography>Click here (metamask needs to be connected)</Typography>
             <Button
-              onClick={(e) => /* props.getAPIData()  */ props.getTXHistory()}
+              onClick={(e) =>
+                /* props.getAPIData()  */ props.getAccountTXHistory()
+              }
               variant="contained"
             >
               account history

@@ -446,6 +446,8 @@ function App() {
   const [isFetchedTX, setIsFetchedTX] = useState(false);
   const [num, setNum] = useState(0);
   const [address, setAddress] = useState("");
+  /* const [isFetchingAccountTxHistory, setIsFetchingAccountTxHistory] =
+    useState(true); */
 
   function addNum() {
     setNum((previousNum) => previousNum + 5);
@@ -453,18 +455,50 @@ function App() {
     getTXHistory();
   }
   function changeInput(e) {
+    /* setIsFetchingAccountTxHistory(false); */
     setInputValue(e.target.value);
     setAddress(e.target.value);
   }
+  async function getAccountTXHistory() {
+    if (normalTXHistory !== "") {
+      setNormalTXHistory("");
+    }
+
+    if (account !== "") {
+      console.log("address was defined");
+      setNormalTXHistory("");
+      setInternalTXHistory("");
+
+      setSecondAlchemyResult("");
+      try {
+        console.log("axios call now starts");
+        let res = await axios.get(
+          `https://pregod.rss3.dev/v1/notes/${account}?limit=${
+            10 + num
+          }&include_poap=false&count_only=false&query_status=false`
+        );
+        setNormalTXHistory(res);
+        if (res !== undefined) {
+          setIsFetchedTX(true);
+        }
+      } catch {
+        console.log("rss3 api call ended up failing");
+      }
+    }
+  }
 
   async function getTXHistory() {
-    console.log("getTxHistory started");
+    if (normalTXHistory !== "") {
+      setNormalTXHistory("");
+    }
+
     if (address !== "") {
       console.log("address was defined");
       setNormalTXHistory("");
       setInternalTXHistory("");
 
       setSecondAlchemyResult("");
+
       try {
         let res = await axios.get(
           `https://pregod.rss3.dev/v1/notes/${address}?limit=${
@@ -475,11 +509,8 @@ function App() {
         if (res !== undefined) {
           setIsFetchedTX(true);
         }
-        console.log(res);
-
-        console.log("address inputted");
       } catch {
-        console.log("etherscan api call ended up failing");
+        console.log("rss3 api call ended up failing");
       }
     }
   }
@@ -595,6 +626,7 @@ function App() {
                 account={account}
                 networkChainId={network.chainId}
                 networkName={network.name}
+                getAccountTXHistory={getAccountTXHistory}
               />
             }
           />
