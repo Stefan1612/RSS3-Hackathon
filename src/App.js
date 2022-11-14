@@ -29,7 +29,6 @@ import { Buffer } from "buffer";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import theme from "./Components/theme/theme";
-import { LineAxisOutlined } from "@mui/icons-material";
 
 // const {utils, BigNumber} = require('ethers');
 
@@ -438,6 +437,9 @@ function App() {
 
   // RSS3
 
+  // test address: 0x5a9D901146DCf8d1CCf5BB2ABD24437DE533c8d5
+
+  // eslint-disable-next-line
   const [inputValue, setInputValue] = useState("");
   const [normalTXHistory, setNormalTXHistory] = useState("");
   const [internalTXHistory, setInternalTXHistory] = useState("");
@@ -454,8 +456,6 @@ function App() {
     setInputValue(e.target.value);
     setAddress(e.target.value);
   }
-  // MY ADDRESS 0x4ad3710fbbf9d1f2cd56031509114e2355e54468
-  // RANDOM TEST ADDRESS 0x23aD6CdC593C4ebF1f124D4aae2422A5848c29c5
 
   async function getTXHistory() {
     console.log("getTxHistory started");
@@ -463,7 +463,7 @@ function App() {
       console.log("address was defined");
       setNormalTXHistory("");
       setInternalTXHistory("");
-      setAlchemyResult("");
+
       setSecondAlchemyResult("");
       try {
         let res = await axios.get(
@@ -476,30 +476,7 @@ function App() {
           setIsFetchedTX(true);
         }
         console.log(res);
-        /*   const provider = new ethers.providers.JsonRpcProvider(
-          `https://eth-mainnet.alchemyapi.io/v2/${process.env.REACT_APP_ALCHEMY_KEY}`
-        );
-        const blockNumber = await provider.getBlockNumber();
 
-        // ${inputValue}#
-        console.log(address);
-        let result = await axios.get(
-          `https://api.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=0&endblock=${blockNumber}&page=1&offset=${
-            5 + num
-          }&sort=desc&apikey=${process.env.REACT_APP_ETHERSCAN_API_KEY}`
-        );
-        setNormalTXHistory(result);
-        console.log(result);
-        let secondresult = await axios.get(
-          `https://api.etherscan.io/api?module=account&action=txlistinternal&address=${address}&startblock=0&endblock=${blockNumber}&page=1&offset=${
-            5 + num
-          }&sort=desc&apikey=${process.env.REACT_APP_ETHERSCAN_API_KEY}`
-        );
-        setInternalTXHistory(secondresult);
-        if (secondresult || result !== undefined) {
-          setIsFetchedTX(true);
-        }
- */
         console.log("address inputted");
       } catch {
         console.log("etherscan api call ended up failing");
@@ -513,77 +490,11 @@ function App() {
       getTXHistory();
     } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [address]);
-
+  /*eslint-disable */
   const [isFetched, setIsFetched] = useState(false);
-  const [alchemyResult, setAlchemyResult] = useState("");
   const [secondAlchemyResult, setSecondAlchemyResult] = useState("");
   const [appInitiated, setAppInitiated] = useState(false);
-
-  async function getAPIData() {
-    console.log("a");
-    setNormalTXHistory("");
-    setInternalTXHistory("");
-    setAlchemyResult("");
-    setSecondAlchemyResult("");
-    setAppInitiated(true);
-    /* getAndChangeInputIntoAddress(); */
-  }
-
-  async function hello() {
-    let res = await axios.get(
-      `https://pregod.rss3.dev/v1/notes/0xCF4a75825f40b46bEdca7aBFC6bfF63a50752724?limit=500&include_poap=false&count_only=false&query_status=false`
-    );
-    console.log(res);
-  }
-
-  /* async function getAndChangeInputIntoAddress() {
-    const regex = "0x";
-    // if user inputs address
-    setNormalTXHistory("");
-    setInternalTXHistory("");
-    if (
-      inputValue &&
-      inputValue.length === 42 &&
-      inputValue.substring(0, 2) === regex
-    ) {
-      setAddress(inputValue);
-    }
-    // no input
-    else if (inputValue === "" || inputValue === undefined) {
-      console.log("no input value");
-      return;
-    }
-    // if input was Unstoppable Domain
-    // call alchemy's unstoppable API
-    else {
-      console.log("domain inputted");
-      alchemyUD();
-    }
-  } */
-
-  /* const AuthStr = "Bearer ".concat(process.env.REACT_APP_ALCHEMY_KEY);
-  async function alchemyUD() {
-    let result = await axios.get(
-      `https://unstoppabledomains.g.alchemy.com/domains/${inputValue}`,
-      { headers: { Authorization: AuthStr } }
-    );
-    const secondResult = await axios.get(
-      `https://unstoppabledomains.g.alchemy.com/domains/${inputValue}/transfers/latest`,
-      { headers: { Authorization: AuthStr } }
-    );
-
-    setSecondAlchemyResult(secondResult);
-    if (result && secondResult) {
-      setIsFetched(true);
-    }
-
-    setAlchemyResult(result);
- 
-    if (result.data.meta.owner) {
-      setAddress(result.data.meta.owner);
-    }
-  } */
-
+  /*eslint-enable */
   //////////////////////////////////////////////////////////////////////////////////////////////
 
   return (
@@ -673,18 +584,17 @@ function App() {
             path="/Wallet"
             element={
               <Wallet
-                getAPIData={getAPIData}
                 changeInput={changeInput}
-                /*  alchemyUD={alchemyUD} */
                 getTXHistory={getTXHistory}
-                alchemyResult={alchemyResult}
                 isFetched={isFetched}
                 normalTXHistory={normalTXHistory}
                 isFetchedTX={isFetchedTX}
                 internalTXHistory={internalTXHistory}
                 secondAlchemyResult={secondAlchemyResult}
                 addNum={addNum}
-                hello={hello}
+                account={account}
+                networkChainId={network.chainId}
+                networkName={network.name}
               />
             }
           />
