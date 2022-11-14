@@ -288,7 +288,7 @@ export default function PrimarySearchAppBar(props) {
                               style={{ textDecoration: "none", color: "white" }}
                             >
                               <MenuItem onClick={handleClose}>
-                                Transfer History
+                                NFT Transfer History
                               </MenuItem>
                             </Link>
                             <Link
@@ -298,6 +298,15 @@ export default function PrimarySearchAppBar(props) {
                             >
                               <MenuItem onClick={handleClose}>
                                 CrossChain Transfer
+                              </MenuItem>
+                            </Link>
+                            <Link
+                              to="/Wallet"
+                              className="Nav"
+                              style={{ textDecoration: "none", color: "white" }}
+                            >
+                              <MenuItem onClick={handleClose}>
+                                Wallet (RSS3)
                               </MenuItem>
                             </Link>
                             <MenuItem onClick={handleClose}>Logout</MenuItem>
