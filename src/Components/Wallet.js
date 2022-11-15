@@ -10,7 +10,7 @@ const Wallet = (props) => {
     >
       <Container>
         {" "}
-        <img className={"imageTwo"} src={rss3}></img>
+        <img alt="rss3 logo" className={"imageTwo"} src={rss3}></img>
         <Box
           sx={{
             color: "white",
