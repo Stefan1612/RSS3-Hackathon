@@ -13,6 +13,8 @@ Discord: SimpleBlock#6604
 
 ### Demo videos:
 
+RSS3 Tx History: https://www.youtube.com/watch?v=ItQ8H2q6RKA
+
 NFT Marketplace: https://www.youtube.com/watch?v=TERQfpsUPZo
 
 SKD Hyphen: https://www.youtube.com/watch?v=cViRhJu1qIM
@@ -21,7 +23,7 @@ RSS3 Transaction History:
 
 ### RSS3
 
-Code:
+Code: https://github.com/Stefan1612/RSS3-Hackathon/blob/master/src/App.js#L462-L516
 
 ### Hyphen Widget
 
@@ -58,11 +60,7 @@ This DApp allows you mint, buy and sell NFT's from the "Ape Family" contract.
 
 Covalent was used to generate: [this whole section]()
 
-The actual API call
 
-## License
-
-This project is released under a GPLv3 compatible license
 
 ## Stack
 
