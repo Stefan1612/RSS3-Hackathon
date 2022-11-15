@@ -6,3 +6,11 @@
   height: auto; */
   float: right;
 }
+.imageTwo {
+  display: block;
+  width: 110px;
+  height: 110px;
+  /* width: auto;
+    height: auto; */
+  float: left;
+}

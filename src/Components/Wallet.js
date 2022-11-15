@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Button, Input, Typography, Container } from "@mui/material";
+import rss3 from "./assets/RSS3.png";
 
 const Wallet = (props) => {
   return (
@@ -8,6 +9,8 @@ const Wallet = (props) => {
       sx={{ backgroundColor: "#212121", minHeight: "100vh" }}
     >
       <Container>
+        {" "}
+        <img className={"imageTwo"} src={rss3}></img>
         <Box
           sx={{
             color: "white",
@@ -18,9 +21,10 @@ const Wallet = (props) => {
             marginBottom: "2vh",
           }}
         >
-          <Box sx={{ textAlign: "center" }}>
+          <Box sx={{ textAlign: "left", marginLeft: "10vw" }}>
+            {" "}
             <Typography variant={"h1"} component={"h1"}>
-              Wallet
+              Wallet{" "}
             </Typography>
             <Typography>
               Currently connected address: {props.account}
@@ -30,6 +34,8 @@ const Wallet = (props) => {
               Currently connected to the network: {props.networkName} ;{" "}
               {props.networkChainId}
             </Typography>
+          </Box>
+          <Box sx={{ textAlign: "center" }}>
             <Typography
               variant={"h3"}
               component={"h3"}
@@ -39,9 +45,7 @@ const Wallet = (props) => {
             </Typography>{" "}
             <Typography>Click here (metamask needs to be connected)</Typography>
             <Button
-              onClick={(e) =>
-                /* props.getAPIData()  */ props.getAccountTXHistory()
-              }
+              onClick={(e) => props.getAccountTXHistory()}
               variant="contained"
             >
               account history
@@ -60,10 +64,7 @@ const Wallet = (props) => {
               placeholder="Domain or address"
             ></Input>
             &nbsp;
-            <Button
-              onClick={(e) => /* props.getAPIData()  */ props.getTXHistory()}
-              variant="contained"
-            >
+            <Button onClick={(e) => props.getTXHistory()} variant="contained">
               address Tx history
             </Button>
           </Box>
@@ -131,16 +132,7 @@ const Wallet = (props) => {
                                     .actions[0].metadata.symbol
                                 }{" "}
                               </Box>
-                              {/*  <Box>
-                            <img
-                              class="image"
-                              src={
-                                props.normalTXHistory.data.result[index]
-                                  .actions[0].metadata.image
-                              }
-                              alt="token"
-                            ></img>
-                          </Box> */}
+
                               <Box>
                                 Name =&gt;{" "}
                                 {
